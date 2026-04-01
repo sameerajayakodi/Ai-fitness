@@ -1,8 +1,9 @@
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:timezone/timezone.dart' as tz;
 import 'dart:math';
+
 import 'package:ai_fitness/core/constants/app_constants.dart';
 import 'package:ai_fitness/core/utils/app_logger.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:timezone/timezone.dart' as tz;
 
 abstract class NotificationService {
   Future<void> initialize();
@@ -63,8 +64,7 @@ class NotificationServiceImpl implements NotificationService {
   @override
   Future<void> scheduleDailyMotivation(int hour, int minute) async {
     try {
-      final randomMessage = AppConstants
-          .motivationMessages[Random().nextInt(
+      final randomMessage = AppConstants.motivationMessages[Random().nextInt(
         AppConstants.motivationMessages.length,
       )];
 
@@ -90,9 +90,9 @@ class NotificationServiceImpl implements NotificationService {
             presentSound: true,
           ),
         ),
-        androidScheduleMode: AndroidScheduleMode.exactAndAllowWhileIdle,
-        uiLocalNotificationDateInterpretation:
-            UILocalNotificationDateInterpretation.utcRelativeToPhoneTimezone,
+        androidScheduleMode: AndroidScheduleMode.inexact,
+          uiLocalNotificationDateInterpretation:
+              UILocalNotificationDateInterpretation.absoluteTime,
         matchDateTimeComponents: DateTimeComponents.time,
       );
 

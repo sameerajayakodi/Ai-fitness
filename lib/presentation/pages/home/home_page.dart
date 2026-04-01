@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ai_fitness/core/theme/app_theme.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

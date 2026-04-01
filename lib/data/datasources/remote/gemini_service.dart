@@ -1,6 +1,7 @@
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:ai_fitness/core/constants/app_constants.dart';
 import 'package:ai_fitness/core/utils/app_logger.dart';
+import 'dart:convert';
 
 abstract class GeminiService {
   Future<String> sendChatMessage(String message, String language);
@@ -52,7 +53,7 @@ class GeminiServiceImpl implements GeminiService {
   Future<String> analyzeFoodImage(String base64Image) async {
     try {
       final imageParts = [
-        DataPart('image/jpeg', base64Image),
+        DataPart('image/jpeg', base64Decode(base64Image)),
       ];
 
       const prompt = '''Analyze this food image and provide:
